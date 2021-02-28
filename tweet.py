@@ -6,6 +6,7 @@ import numpy as np
 import re
 import matplotlib.pyplot as plt
 from datetime import datetime
+from datetime import timedelta
 plt.style.use('fivethirtyeight')
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -99,7 +100,7 @@ def scraptweets(search_words,numTweets,latitude,longitude):
     api = tweepy.API(authenticate, wait_on_rate_limit = True)
     db_tweets = pd.DataFrame(columns = ['username','location', 'text', 'hashtags'])
     for i in range(0, 1):
-        tweets = tweepy.Cursor(api.search, lang="en",q=search_words, geocode="%f,%f,%dkm" % (latitude, longitude, 100), tweet_mode='extended').items(numTweets)
+        tweets = tweepy.Cursor(api.search, lang="en",q=search_words, geocode="%f,%f,%dkm" % (latitude, longitude, 100), tweet_mode='extended', since = datetime.today()-timedelta(days=7)).items(numTweets)
         tweet_list = [tweet for tweet in tweets]
     for tweet in tweet_list:
         username = tweet.user.screen_name
