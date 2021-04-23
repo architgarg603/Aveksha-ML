@@ -48,7 +48,7 @@ def get_data():
             row_data=list(nusers.values.tolist()),
             url1 ='./static/{}.png'.format(today),
             url2 ='./static/Graph{}.png'.format(todayGraph),
-            words = swords
+            
         )
     return render_template("Twitter_Today.html",isLoggedin=1, role='none')
 
