@@ -26,7 +26,8 @@ def get_data():
     if request.method == 'POST':      
         user1 = float(request.form['city1'])
         user2 = float(request.form['city2'])
-        swords = request.form['words']
+        sword = request.form['words']
+        swords = swrod.split()
         nusers,wc,df,todayGraph = requestResults(user1,user2)
         print(df['Analysis'].value_counts())
         plt.figure(figsize=(12,8))
@@ -42,14 +43,12 @@ def get_data():
         # df['Analysis'].value_counts().plot(kind = 'pie')  
         # # plt.show()
         # plt.savefig('C:/Users/abhig/Downloads/DSCWOW/DSCWOW_Aveksha-main/DSCWOW_Aveksha/static/newplot2.png')
-       x = swords.split()
-       print(x)
-
+       
         return jsonify(
             row_data=list(nusers.values.tolist()),
             url1 ='./static/{}.png'.format(today),
             url2 ='./static/Graph{}.png'.format(todayGraph),
-            words = swords.split()
+            words = swords
         )
     return render_template("Twitter_Today.html",isLoggedin=1, role='none')
 
