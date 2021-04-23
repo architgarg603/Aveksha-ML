@@ -26,8 +26,8 @@ def get_data():
     if request.method == 'POST':      
         user1 = float(request.form['city1'])
         user2 = float(request.form['city2'])
-        sword = request.form['words']
-        swords = sword.split()
+        swo = request.form['words']
+        swords = swo.split(" ")
         nusers,wc,df,todayGraph = requestResults(user1,user2)
         print(df['Analysis'].value_counts())
         plt.figure(figsize=(12,8))
