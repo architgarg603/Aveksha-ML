@@ -16,8 +16,8 @@ from flask_cors import CORS
 app = Flask(__name__)
 cors = CORS(app, resources={r"*": {"origins": "*"}})
 
-def requestResults(user1,user2,swords):
-    nusers,wc,df,todayGraph=get_tweets(user1,user2, swords)
+def requestResults(user1,user2):
+    nusers,wc,df,todayGraph=get_tweets(user1,user2)
     return nusers,wc,df,todayGraph
 
 @app.route('/', methods=['POST', 'GET'])
@@ -27,7 +27,7 @@ def get_data():
         user1 = float(request.form['city1'])
         user2 = float(request.form['city2'])
         swords = float(request.form['words'])
-        nusers,wc,df,todayGraph = requestResults(user1,user2,swords)
+        nusers,wc,df,todayGraph = requestResults(user1,user2)
         print(df['Analysis'].value_counts())
         plt.figure(figsize=(12,8))
         plt.imshow(wc, interpolation="bilinear")
@@ -45,7 +45,8 @@ def get_data():
         return jsonify(
             row_data=list(nusers.values.tolist()),
             url1 ='./static/{}.png'.format(today),
-            url2 ='./static/Graph{}.png'.format(todayGraph)
+            url2 ='./static/Graph{}.png'.format(todayGraph),
+            words = swords
         )
     return render_template("Twitter_Today.html",isLoggedin=1, role='none')
 

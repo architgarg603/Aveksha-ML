@@ -119,7 +119,7 @@ def get_tweets(user1,user2, swords):
     # data.drop(data.columns[[3,4,5]], axis = 1, inplace = True) 
 
     search_words=["women","rape"]
-    if len(swords) > 0 : search_words = swords
+    # if len(swords) > 0 : search_words = swords
     # data['City'] = data['City'].apply(lambda x: x.lower())
     latitude= user1
     longitude = user2
