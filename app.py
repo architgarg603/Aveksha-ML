@@ -42,11 +42,13 @@ def get_data():
         # df['Analysis'].value_counts().plot(kind = 'pie')  
         # # plt.show()
         # plt.savefig('C:/Users/abhig/Downloads/DSCWOW/DSCWOW_Aveksha-main/DSCWOW_Aveksha/static/newplot2.png')
+       
+
         return jsonify(
             row_data=list(nusers.values.tolist()),
             url1 ='./static/{}.png'.format(today),
             url2 ='./static/Graph{}.png'.format(todayGraph),
-            words = swords[0]
+            words = swords.split()
         )
     return render_template("Twitter_Today.html",isLoggedin=1, role='none')
 
