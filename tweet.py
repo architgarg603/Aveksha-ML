@@ -114,7 +114,7 @@ def scraptweets(search_words,numTweets,latitude,longitude):
             db_tweets.loc[len(db_tweets)] = ith_tweet
     return clean(db_tweets)
 
-def get_tweets(user1,user2, swords):
+def get_tweets(user1,user2):
     # data = pd.read_csv('Data.csv')
     # data.drop(data.columns[[3,4,5]], axis = 1, inplace = True) 
 
