@@ -16,8 +16,8 @@ from flask_cors import CORS
 app = Flask(__name__)
 cors = CORS(app, resources={r"*": {"origins": "*"}})
 
-def requestResults(user1,user2):
-    nusers,wc,df,todayGraph=get_tweets(user1,user2)
+def requestResults(user1,user2,swords):
+    nusers,wc,df,todayGraph=get_tweets(user1,user2,swords)
     return nusers,wc,df,todayGraph
 
 @app.route('/', methods=['POST', 'GET'])
@@ -28,7 +28,7 @@ def get_data():
         user2 = float(request.form['city2'])
         swo = request.form['words']
         swords = swo.split(" ")
-        nusers,wc,df,todayGraph = requestResults(user1,user2)
+        nusers,wc,df,todayGraph = requestResults(user1,user2,swords)
         print(df['Analysis'].value_counts())
         plt.figure(figsize=(12,8))
         plt.imshow(wc, interpolation="bilinear")
