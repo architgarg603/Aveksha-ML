@@ -42,7 +42,7 @@ def get_data():
         # df['Analysis'].value_counts().plot(kind = 'pie')  
         # # plt.show()
         # plt.savefig('C:/Users/abhig/Downloads/DSCWOW/DSCWOW_Aveksha-main/DSCWOW_Aveksha/static/newplot2.png')
-       
+       print(swords.split())
 
         return jsonify(
             row_data=list(nusers.values.tolist()),
